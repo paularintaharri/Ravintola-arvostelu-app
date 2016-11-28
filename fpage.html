@@ -2,28 +2,66 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="style.css" type="text/css" rel="stylesheet" />
         <title>Testi</title>
     </head>
     <body>
         <header>
             <ul>
               <li>
-                  <a href="default.asp">Home</a></li>
+                  <a href="fpage.html">Home</a></li>
                   <li><a href="reviews.asp">Reviews</a></li>
-                  <li><a href="contact.asp">Contact</a></li>
+                  <li><a href="#contact">Contact</a></li>
                   <li><a href="about.asp">About</a></li>
-                  <li><a href="signin.asp">Sign in</a></li>
             </ul>
         </header>
         <h1>Sivun nimi</h1>
         <h2>
-            Register here!
+            Leave a review!
         </h2>
         <form>
-            <input type="text" class="form-control" size="50" placeholder="Username" required>
-            <input type="password" class="form-control" size="50" placeholder="Password" required>
-            <input type="email" class="form-control" size="50" placeholder="Email Address" required>
-            <button type="button" class="btn btn-danger">Subscribe</button>
-        </form>    
+            <input type="text" class="form-control" placeholder="Username" required>
+            <input type="password" class="form-control" placeholder="Password" required>
+            <input type="email" class="form-control" placeholder="Email Address" required>
+            <input type="textarea" class="form-control" placeholder="Write your review" required>
+            <button type="button" class="btn btn-danger">Submit</button>
+        </form>
+        
+        
+        <footer id="contact">
+            <h2>Contact:</h2>
+                <div class="col-sm-5">
+                  <p><span class="glyphicon glyphicon-map-marker"></span> Soomi</p>
+                  <p><span class="glyphicon glyphicon-phone"></span> puh</p>
+                  <p><span class="glyphicon glyphicon-envelope"></span> email@something.com</p>
+                </div>
+        </footer>
     </body>
+    
+    <div id="googleMap" style="height:400px;width:100%;"></div>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+        var myCenter = new google.maps.LatLng(60.1699, 24.9384);
+        
+        function initialize() {
+        var mapProp = {
+          center:myCenter,
+          zoom:12,
+          scrollwheel:false,
+          draggable:false,
+          mapTypeId:google.maps.MapTypeId.ROADMAP
+          };
+        
+        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        
+        var marker = new google.maps.Marker({
+          position:myCenter,
+          });
+        
+        marker.setMap(map);
+        }
+        
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    
 </html>

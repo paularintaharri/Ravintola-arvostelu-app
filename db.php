@@ -6,28 +6,33 @@
 
     //Opens connection to MySQL
     
-    $connection=mysql_connect ($servername, $username, $password);
+    $connection=mysqli_connect($servername, $username, $password);
     if (!$connection) {
-      die('Not connected : ' . mysql_error());
+      die('Not connected : ' . mysqli_error());
     }
     
-        $db_selected = mysql_select_db($database, $connection);
+    $db_selected = mysqli_select_db($database, $connection);
     if (!$db_selected) {
-        die ('Can\'t use db : ' . mysql_error());
+        die ('Can\'t use db : ' . mysqli_error());
     }
     
     // Select all the rows in the markers table
     $query = "SELECT * FROM markers";
-    $result = mysql_query($query);
+    $result = mysqli_query($query);
     if (!$result) {
-        die('Invalid query: ' . mysql_error());
+        die('Invalid query: ' . mysqli_error());
     }
     
     $selectall = array();
-    while($row = mysqli_fetch_assoc($result)){
-        $selectall[]=$row;
-    }
-    echo json_encode($emparray);
+    if (mysqli_num_rows($result) > 0){
+        while($row = mysqli_fetch_assoc($result)){
+            $selectall[]=$row;
+        }
+        echo json_encode($emparray);
+    } else {
+        echo '0 results';
+    }   
+    
     
     /*
         //write to json file

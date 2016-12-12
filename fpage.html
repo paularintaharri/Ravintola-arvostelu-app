@@ -10,7 +10,7 @@
             <ul>
               <li>
                   <a href="fpage.html">Home</a></li>
-                  <li><a href="reviews.asp">Reviews</a></li>
+                  <li><a href="reviews.html">Reviews</a></li>
                   <li><a href="#contact">Contact</a></li>
                   <li><a href="about.asp">About</a></li>
             </ul>
@@ -21,9 +21,15 @@
         </h2>
         <form>
             <input type="text" class="form-control" placeholder="Username" required>
-            <input type="password" class="form-control" placeholder="Password" required>
-            <input type="email" class="form-control" placeholder="Email Address" required>
+            
+            <input type="email" class="form-control" placeholder="Email Address"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+            
+            <input type="text" class="form-control" placeholder="Stars"
+            pattern="\d{5}([0-5])" required>
+            
             <input type="textarea" class="form-control" placeholder="Write your review" required>
+            
             <button type="button" class="btn btn-danger">Submit</button>
         </form>
         
@@ -115,7 +121,7 @@
         <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initialize"
         async defer></script> 
         
-        <script>
+                <script>
         
         function ajaxFunction(){
           var ajaxRequest;  // The variable that makes Ajax possible!
@@ -153,7 +159,6 @@
         }
         
         window.onload = ajaxFunction();
-          
         </script>
        
     </body>

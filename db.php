@@ -1,82 +1,85 @@
 <?php
 
 //TIETOKANNASTA
+    
 
-    include('connect.php');
+    //include('connect.php');
 
-    //Opens connection to MySQL
+    // Create connection
+
+
+        //console.log("Connection successfully");
+        //echo "Connected successfully (".$link->host_info.")"; 
+
     
-    $connection=mysqli_connect($servername, $username, $password);
-    if (!$connection) {
-      die('Not connected : ' . mysqli_error());
-    }
-    
-    $db_selected = mysqli_select_db($database, $connection);
-    if (!$db_selected) {
-        die ('Can\'t use db : ' . mysqli_error());
-    }
-    
-    // Select all the rows in the markers table
-    $query = "SELECT * FROM markers";
-    $result = mysqli_query($query);
-    if (!$result) {
-        die('Invalid query: ' . mysqli_error());
-    }
-    
-    $selectall = array();
-    if (mysqli_num_rows($result) > 0){
-        while($row = mysqli_fetch_assoc($result)){
-            $selectall[]=$row;
+    function showAll() { 
+        
+        $link = new mysqli('localhost', 'johannrt', '', 'Projekti');
+
+        // Check connection
+        if ($link->connect_error) {
+            die("Connection failed: " . $link->connect_error);
         }
-        echo json_encode($emparray);
-    } else {
-        echo '0 results';
-    }   
+        
+        $sql = "SELECT * FROM restaurants";
+        $result = mysqli_query($link, $sql);
     
-    
-    /*
-        //write to json file
-    $fp = fopen('empdata.json', 'w');
-    fwrite($fp, json_encode($emparray));
-    fclose($fp);
-    */
-    
- /* ********   //TIETOKANTAAAN ********* 
-    
-    $connection=mysql_connect ($servername, $username, $password);
-    if (!$connection) {
-      die('Not connected : ' . mysql_error());
+        $rows = [];
+        $inc = 0;
+        
+        if ($result->num_rows > 0) {
+        // output data of each row
+            while($row = $result->fetch_assoc()) {
+                
+                $jsonObject = (array('name' => $row["name"], 'address' => $row["address"],
+                'email' => $row["useremail"], 'review' => $row["review"], 'stars'=> $row["stars"]));
+                
+                $arr[$inc] = $jsonObject;
+                $inc++;
+                
+              /*  echo "Name: " . $row["name"] . " - Address: " . $row["address"].
+                " - Email: ". $row["useremail"]. " - Review: ". $row["review"]. " - Stars: ". $row["stars"]. "<br>";
+                */
+            }
+            echo json_encode($arr);
+        } else {
+            echo "No reviews yet!";
+        
+        }
+        
+        $link->close();
     }
     
-        $db_selected = mysql_select_db($database, $connection);
-    if (!$db_selected) {
-        die ('Can\'t use db : ' . mysql_error());
+    
+    function add($name, $add, $email, $r, $s) {
+        
+        //json_decode()
+        
+        $link = new mysqli('localhost', 'johannrt', '', 'Projekti');
+
+        // Check connection
+        if ($link->connect_error) {
+            die("Connection failed: " . $link->connect_error);
+        }
+        
+        $name = $name;
+        $address = $add;
+        $useremail = $email;
+        $review = $r;
+        $stars = $s;
+        
+        $sql = "INSERT INTO `restaurants`(`name`, `address`, `useremail`, `review`, `stars`)
+        VALUES ('$name', '$address', '$useremail', '$review', $stars)";
+        
+        if(!mysqli_query($link, $sql)){
+            die('Error : ' . $link->error);
+        }
+        
+         $link->close();
+
     }
+
     
-    
-    //read the json file contents
-    $jsondata = file_get_contents('empdetails.json');
-    //convert json object to php associative array
-    $data = json_decode($jsondata, true);
-    
-    
-    //get the details
-    $id = $data['empid'];
-    $name = $data['personal']['name'];
-    $gender = $data['personal']['gender'];
-    $age = $data['personal']['age'];
-    $streetaddress = $data['personal']['address']['streetaddress'];
-    $city = $data['personal']['address']['city'];
-    $state = $data['personal']['address']['state'];
-    $postalcode = $data['personal']['address']['postalcode'];
-    $designation = $data['profile']['designation'];
-    $department = $data['profile']['department'];
-    
-    //insert into mysql table
-    $sql = "INSERT INTO tbl_emp(empid, empname, gender, age, streetaddress, city, state, postalcode, designation, department)
-    VALUES('$id', '$name', '$gender', '$age', '$streetaddress', '$city', '$state', '$postalcode', '$designation', '$department')";
-    if(!mysql_query($sql,$con))
-    {
-        die('Error : ' . mysql_error());
-    } */
+ //   add("r1", "os", "g@h.com", "arv", 3);
+    showAll();
 ?>    

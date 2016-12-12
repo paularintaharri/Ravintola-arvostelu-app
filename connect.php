@@ -1,6 +1,6 @@
 <?php
-<<<<<<< HEAD
-$servername = 'localhost';
+//<<<<<<< HEAD
+    $servername = 'localhost';
     $username = 'root';
     $password = "";
     $database = "restaurant";
@@ -8,7 +8,7 @@ $servername = 'localhost';
 
     // Create connection
     $link = new mysqli($servername, $username, $password, $database);
-=======
+//=======
     // Includes username etc. information
 
     $servername = getenv('IP');

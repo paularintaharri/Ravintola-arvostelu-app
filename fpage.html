@@ -6,45 +6,67 @@
         <title>Testi</title>
     </head>
     <body>
+      
+      
         <header>
             <ul>
-              <li>
-                  <a href="fpage.html">Home</a></li>
-                  <li><a href="reviews.asp">Reviews</a></li>
-                  <li><a href="#contact">Contact</a></li>
-                  <li><a href="about.asp">About</a></li>
+              <li><a class="active" href="fpage.html">Home</a></li>
+              <li><a href="rewievspage.html">Reviews</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li><a href="aboutpage.html">About</a></li>
             </ul>
         </header>
-        <h1>Sivun nimi</h1>
-        <h2>
-            Leave a review!
-        </h2>
-        <form>
-            <input type="text" class="form-control" placeholder="Username" required>
-            <input type="password" class="form-control" placeholder="Password" required>
-            <input type="email" class="form-control" placeholder="Email Address" required>
-            <input type="textarea" class="form-control" placeholder="Write your review" required>
-            <button type="button" class="btn btn-danger">Submit</button>
+        
+        
+       
+        
+       <div class="container">
+        <h1>RESTAURANT REVIEW</h1>
+        <h2>Leave a review!</h2>
+        
+        <form  class="form-horizontal" id="reviewform" method="post">
+          <div class="form-group">
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Restaurant name" required>
+              <input type="password" class="form-control" placeholder="Address" required>
+              <input type="email" class="form-control" placeholder="Your Email Address" required>
+              <select name="stars" class="form-control">
+                <option value = "" disable selected>Stars </option>
+                <option value = "1">1</option>
+                <option value = "2">2</option>
+                <option value = "3">3</option>
+                <option value = "4">4</option>
+                <option value = "5">5</option>
+              </select>
+              <textarea name="review" rows="4" cols="50" n class="form-control" form="reviewform" placeholder="Write your review here" required></textarea>
+              
+              </br>
+              
+              <input type="Submit" value ="Submit" class="btn btn-danger">
+            </div>
+            </div>
         </form>
         
         
         <footer id="contact">
             <h2>Contact:</h2>
                 <div class="col-sm-5">
-                  <p><span class="glyphicon glyphicon-map-marker"></span> Soomi</p>
-                  <p><span class="glyphicon glyphicon-phone"></span> puh</p>
-                  <p><span class="glyphicon glyphicon-envelope"></span> email@something.com</p>
+                  <p><span class="glyphicon glyphicon-map-marker"></span> Bulevardi 31, 00100 Helsinki, Suomi</p>
+                  <p><span class="glyphicon glyphicon-phone"></span> 050 123 4567</p>
+                  <p><span class="glyphicon glyphicon-envelope"></span> paula@metropolia.fi</p>
+                   <p><span class="glyphicon glyphicon-envelope"></span> johanna@metropolia.fi</p>
                 </div>
         </footer>
     
-    <div id="paikka"></div>
+ <!--   <div id="paikka"></div>
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <div id="googleMap" style="height:400px;width:50%;"></div>
+    <div id="googleMap" style="height:400px;width:50%;"></div>  -->
     
-    <script>
-
-    /* ******** KARTTA ******* */    
-  /*    function initialize() {
+  <script src="https://www.google.fi/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=ravintolat+helsinki&rflfq=1&rlha=0&rllag=60166634,24939924,589&tbm=lcl&tbs=lf_msr:-1,lf:1,lf_ui:9,lf_pqs:EAE"></script>
+  <script>
+/*
+    // ******** KARTTA ******* 
+       function initialize() {
         var map = new google.maps.Map(document.getElementById("googleMap"), {
           center: {lat: 60.1699, lng: 24.9384},
           zoom: 12,
@@ -112,8 +134,9 @@
         });
         } */
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initialize"
-        async defer></script> 
+          <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initialize"
+          </script> 
+          
         
         <script>
         
@@ -155,6 +178,9 @@
         window.onload = ajaxFunction();
           
         </script>
+        
+         </div>
+        <div class="form-group">
        
     </body>
     

@@ -9,6 +9,7 @@
     // Create connection
     $link = new mysqli($servername, $username, $password, $database);
 //=======
+
     // Includes username etc. information
 
     $servername = getenv('IP');
@@ -24,12 +25,18 @@
 
 /*    // Create connection
     $link = new mysqli($servername, $username, $password, $database, $dbport);
->>>>>>> 1e04af234a2828091f7998846079071303dfb756
+$servername = 'localhost';
+    $username = 'root';
+    $password = "";
+    $database = "restaurant";
+  
+
+    // Create connection
+    $link = new mysqli($servername, $username, $password, $database);
 
     // Check connection
     if ($link->connect_error) {
         die("Connection failed: " . $link->connect_error);
-<<<<<<< HEAD
     } 
     echo "Connected successfully (".$link->host_info.")"; 
     
@@ -48,7 +55,6 @@
         echo "0 results";
     }
     $link->close();
-=======
     }
     //console.log("Connected successfully" .$link->host_info);
     //echo "Connected successfully (".$link->host_info.")"; 
@@ -68,5 +74,4 @@
     
     $link->close();
     */
->>>>>>> 1e04af234a2828091f7998846079071303dfb756
 ?>    

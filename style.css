@@ -1,17 +1,25 @@
 body {
-    font-family: Arial, Verdana, sans-serif;
-    background-color: white;
+    background-color:  #e0e0eb;
+     font-family: verdana;
+}
+
+
+h1, h2 {
+    color: black;
+    text-align: left;
+}
+
+p {
+   
+    font-size: 20px;
 }
 
 ul {
-    /*position: fixed;
-    top: 0;
-    width: 100%; */
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #3d3d5c;
 }
 
 li {
@@ -26,11 +34,11 @@ li a {
     text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
 li a:hover {
     background-color: #111;
 }
-footer h2 {
-    color: white;
-    background-color: #333;
+
+.active {
+    background-color: #ff6666;
 }
+

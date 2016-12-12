@@ -1,22 +1,44 @@
 <?php
 
-//TIETOKANNASTA
-    
-
-    
     $servername = 'localhost';
     $username = 'johannrt';
     $password = '';
     $database = 'Projekti';
     $table = 'restaurants';
 
+    $method = $_SERVER['REQUEST_METHOD'];
+    
+    //$request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
+    $name = $_GET["name"];
+    
+    
+    
+    switch ($method) {
+      case 'GET':
+          showRestRev('Love.Fish');
+          break;
+          //showAll();
+        //$sql = "select * from `$table`".($key?" WHERE id=$key":''); break;
+      case 'PUT':
+        //$sql = "update `$table` set $set where id=$key";
+        break;
+      case 'POST':
+          add('r1','os', 'rev',2);
+        //$sql = "insert into `$table` set $set";
+        break;
+      case 'DELETE':
+        //$sql = "delete `$table` where id=$key";
+        break;
+    }
+    
+
+    
+
+
     //include('connect.php');
 
-    // Create connection
 
 
-        //console.log("Connection successfully");
-        //echo "Connected successfully (".$link->host_info.")"; 
 
     
     function showAll() { 
@@ -43,10 +65,7 @@
                 
                 $arr[$inc] = $jsonObject;
                 $inc++;
-                
-              /*  echo "Name: " . $row["name"] . " - Address: " . $row["address"].
-                " - Email: ". $row["useremail"]. " - Review: ". $row["review"]. " - Stars: ". $row["stars"]. "<br>";
-                */
+
             }
             echo json_encode($arr);
         } else {
@@ -81,6 +100,7 @@
             die('Error : ' . $link->error);
         }
         
+        echo ('New review added!');
          $link->close();
 
     }
@@ -111,10 +131,7 @@
                 
                 $arr[$inc] = $jsonObject;
                 $inc++;
-                
-              /*  echo "Name: " . $row["name"] . " - Address: " . $row["address"].
-                " - Email: ". $row["useremail"]. " - Review: ". $row["review"]. " - Stars: ". $row["stars"]. "<br>";
-                */
+
             }
             echo json_encode($arr);
         } else {
@@ -125,8 +142,4 @@
         $link->close();
         
     }
-
-    
- //   add("r1", "os", "g@h.com", "arv", 3);
-    showRestRev('Love.Fish');
 ?>    

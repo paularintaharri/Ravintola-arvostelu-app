@@ -15,6 +15,15 @@
             </ul>
         </header>
         <h1>REVIEW</h1>
+     
+        
+        <form method = "GET">
+            Restaurant name: <input type = "text" name = "name" required/>
+            <button onclick="getRestaurants()">Submit</button>
+        </form>
+
+        
+        <div id="testi"></div>
         
         <footer id="contact">
             <h2>Contact:</h2>
@@ -25,6 +34,19 @@
                    <p><span class="glyphicon glyphicon-envelope"></span> johanna@metropolia.fi</p>
                 </div>
         </footer>
+        
+        <script>
+            function getRestaurants(){
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        document.getElementById("testi").innerHTML = xmlhttp.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "db.php", true);
+                xmlhttp.send();
+            }
+        </script> 
     </body>
     
 </html>

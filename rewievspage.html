@@ -14,6 +14,19 @@
               <li><a href="aboutpage.html">About</a></li>
             </ul>
         </header>
+<<<<<<< HEAD
+=======
+        <h1>REVIEW</h1>
+     
+        
+        <form method = "GET">
+            Restaurant name: <input type = "text" name = "name" required/>
+            <button onclick="getRestaurants()">Submit</button>
+        </form>
+
+        
+        <div id="testi"></div>
+>>>>>>> 3879b8b51e6e8f7aba5f674c46b32905668bd630
         
          <div class="container">
         <h1>REVIEWS</h1>
@@ -40,6 +53,19 @@
                 </div>
         
         </footer>
+        
+        <script>
+            function getRestaurants(){
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        document.getElementById("testi").innerHTML = xmlhttp.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "db.php", true);
+                xmlhttp.send();
+            }
+        </script> 
     </body>
     
 </html>

@@ -17,9 +17,9 @@
     //$dbport = 3306;
      
     //$servername = 'localhost';
-    $username = 'johannrt';
+    $username = 'root';
     $password = "";
-    $database = "Projekti";
+    $database = "restaurant";
     $table = 'restaurants';
   
 

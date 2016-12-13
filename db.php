@@ -1,9 +1,9 @@
 <?php
 
     $servername = 'localhost';
-    $username = 'johannrt';
+    $username = 'root';
     $password = '';
-    $database = 'Projekti';
+    $database = 'restaurant';
     $table = 'restaurants';
 
     $method = $_SERVER['REQUEST_METHOD'];
@@ -15,9 +15,10 @@
     
     switch ($method) {
       case 'GET':
-          showRestRev('Love.Fish');
+          //showRestRev($name);
+          
+          showAll();
           break;
-          //showAll();
         //$sql = "select * from `$table`".($key?" WHERE id=$key":''); break;
       case 'PUT':
         //$sql = "update `$table` set $set where id=$key";
@@ -43,14 +44,14 @@
     
     function showAll() { 
         
-        $link = new mysqli($servername, 'johannrt', '', 'Projekti');
+        $link = new mysqli($servername, 'root', '', 'restaurant');
 
         // Check connection
         if ($link->connect_error) {
             die("Connection failed: " . $link->connect_error);
         }
         
-        $sql = "SELECT * FROM $table";
+        $sql = "SELECT * FROM restaurants";
         $result = mysqli_query($link, $sql);
     
         $rows = [];
@@ -81,7 +82,7 @@
         
         //json_decode()
         
-        $link = new mysqli('localhost', 'johannrt', '', 'Projekti');
+        $link = new mysqli('localhost', 'root', '', 'restaurant');
 
         // Check connection
         if ($link->connect_error) {
@@ -109,7 +110,7 @@
         
         $restaurant = $res;
         
-        $link = new mysqli($servername, 'johannrt', '', 'Projekti');
+        $link = new mysqli($servername, 'root', '', 'restaurant');
 
         // Check connection
         if ($link->connect_error) {

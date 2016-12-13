@@ -42,3 +42,19 @@ li a:hover {
     background-color: #ff6666;
 }
 
+footer { 
+    display: block;
+}
+
+h2.contact {
+    
+    background-color: #3d3d5c;
+    font-size: 20px;
+    color: white;
+    padding: 2px; 
+}
+
+.footer{
+    position:fixed;
+    bottom:0;
+}

@@ -1,6 +1,6 @@
 <?php
 
-    include('connect.php');
+    //include('connect.php');
  /*   
     $servername;
     $username = 'johannrt';
@@ -9,7 +9,7 @@
     $table = 'restaurants';
     
     
-    $name = $_GET["name"];
+    
     $address = $_GET["address"];
     $stars = $_GET["stars"];
     $review = $_GET["review"];
@@ -17,18 +17,26 @@
     
     */
 
+
     function getResource() {
         
         # returns numerically indexed array of URI parts
-        $resource_string = $_SERVER['REQUEST_URI'];
+        $resource_string = $_SERVER['HTTP_REFERER']; //OIKEA
+        //$resource_string = $_SERVER['REQUEST_URI'];
+       //$resource_string = 'https://testi-johannrt.c9users.io/Ravintola/rewievspage.html?name=momo';
         
         if (strstr($resource_string, '?')) {
-            $resource_string = substr($resource_string, 0, strpos($resource_string, '?'));
+            $resource_string  = substr($resource_string, strpos($resource_string, '?') + 1, strlen($resource_string)-strpos($resource_string, '?'));
         }
+        //echo $resource_string;
+       // $resource = array();
+       
+       $x = str_replace('+', ' ', $resource_string);
+        $resource = explode('=', $x);
         
-        $resource = array();
-        $resource = explode('/', $resource_string);
-        array_shift($resource);   
+        
+        //array_shift($resource); 
+        //echo $resource[1];
         return $resource;
     }
 
@@ -57,7 +65,7 @@
     
     function showAll() { 
         
-        $link = new mysqli($servername, 'johannrt', '', 'Projekti');
+        $link = new mysqli($servername,'johannrt', '', 'Projekti');
 
         // Check connection
         if ($link->connect_error) {
@@ -83,7 +91,7 @@
             }
             echo json_encode($arr);
         } else {
-            echo "No reviews yet!";
+            //echo json_encode("No reviews yet!";
         
         }
         
@@ -123,7 +131,9 @@
         
         $restaurant = $res;
         
-        $link = new mysqli($servername, 'johannrt', '', 'Projekti');
+        //echo $restaurant;
+        
+        $link = new mysqli('localhost', 'johannrt', '', 'Projekti');
 
         // Check connection
         if ($link->connect_error) {
@@ -132,9 +142,11 @@
         
         $sql = "SELECT * FROM restaurants WHERE name= '$restaurant'";
         $result = mysqli_query($link, $sql);
-    
+        
+        
         $rows = [];
         $inc = 0;
+        
         
         if ($result->num_rows > 0) {
         // output data of each row
@@ -149,7 +161,7 @@
             }
             echo json_encode($arr);
         } else {
-            echo "No reviews yet!";
+            //echo "No reviews yet!";
         
         }
         
@@ -158,24 +170,28 @@
     }
     
 
+    
+    //$name = $_GET["name"];
 	$resource = getResource();
-    $parameters = getParameters();
+    //$parameters = getParameters();
     $method = $_SERVER['REQUEST_METHOD'];
 
+  
+    //showRestRev($resource[1]);
     switch ($method) {
-        case 'GET' && $resource[1]=='name':
+        case 'GET' && $resource[0]=='name':
             showRestRev($resource[1]);
             break;
-        case 'GET':
+        case 'GET' && $resource[1]=='':
             showAll();
             break;
-        case 'POST' && $resource[1] == 'name':
+        case 'POST':
             add($parameters);
             break;
         default:
             http_response_code(405); # Method not allowed
             break;
-    }
+    } 
 
-    
+    //showRestRev('momo'); 
 ?>    

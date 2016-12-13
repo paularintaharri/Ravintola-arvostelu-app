@@ -26,7 +26,8 @@
             <div class="col-sm-10">
                 <input type="text" name="name" placeholder="Write restaurant name" class="form-control" required>
                 </br>
-                <button onclick="getRestaurants()" class="btn btn-danger">Submit</button>
+                <input type="submit" value="submit" class="btn btn-danger">
+           
             </div>
             </div>
         </form>
@@ -46,6 +47,10 @@
         </footer>
         
         <script>
+        
+        var theForm = document.getElementById('reviews');
+        theForm.onsubmit = getRestaurants();
+    
             function getRestaurants(){
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {

@@ -1,22 +1,11 @@
 <?php
-//<<<<<<< HEAD
-    $servername = 'localhost';
-    $username = 'root';
-    $password = "";
-    $database = "restaurant";
-  
-
-    // Create connection
-    $link = new mysqli($servername, $username, $password, $database);
-//=======
-
     // Includes username etc. information
 
-    $servername = getenv('IP');
+    //$servername = getenv('IP');
     //$username = getenv('C9_USER');
     //$dbport = 3306;
      
-    //$servername = 'localhost';
+    $servername = 'localhost';
     $username = 'johannrt';
     $password = "";
     $database = "Projekti";

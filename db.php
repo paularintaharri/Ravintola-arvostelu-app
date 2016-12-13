@@ -1,10 +1,18 @@
 <?php
 
-    $servername = 'localhost';
+    include('connect.php');
+ /*   
+    $servername;
     $username = 'johannrt';
     $password = '';
     $database = 'Projekti';
-    $table = 'restaurants';
+    $table = 'restaurants'; */
+    
+    $servername;
+    $username;
+    $password;
+    $database;
+    $table;
 
     $method = $_SERVER['REQUEST_METHOD'];
     

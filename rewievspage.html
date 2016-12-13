@@ -14,31 +14,22 @@
               <li><a href="aboutpage.html">About</a></li>
             </ul>
         </header>
-<<<<<<< HEAD
-=======
-        <h1>REVIEW</h1>
-     
-        
-        <form method = "GET">
-            Restaurant name: <input type = "text" name = "name" required/>
-            <button onclick="getRestaurants()">Submit</button>
-        </form>
 
         
         <div id="testi"></div>
->>>>>>> 3879b8b51e6e8f7aba5f674c46b32905668bd630
+
         
          <div class="container">
         <h1>REVIEWS</h1>
         
         <h2>Read other users revievs</h2>
         
-        <form class="form-horizontal" id="reviews">
+        <form class="form-horizontal" id="reviews" method="GET">
             <div class="form-group">
             <div class="col-sm-10">
                 <input type="text" name="search" placeholder="Write restaurant name" class="form-control">
                 </br>
-                <input type="Submit" id="sub2" value ="Submit" class="btn btn-danger">
+                <button onclick="getRestaurants()" class="btn btn-danger">Submit</button>
             </div>
             </div>
         </form>

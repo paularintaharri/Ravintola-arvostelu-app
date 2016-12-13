@@ -16,9 +16,6 @@
         </header>
 
         
-        <div id="testi"></div>
-
-        
          <div class="container">
         <h1>REVIEWS</h1>
         
@@ -27,14 +24,17 @@
         <form class="form-horizontal" id="reviews" method="GET">
             <div class="form-group">
             <div class="col-sm-10">
-                <input type="text" name="search" placeholder="Write restaurant name" class="form-control">
+                <input type="text" name="name" placeholder="Write restaurant name" class="form-control" required>
                 </br>
                 <button onclick="getRestaurants()" class="btn btn-danger">Submit</button>
             </div>
             </div>
         </form>
         </div>
-        <footer id="footer">
+        
+        <div id="testi"></div>
+        
+        <footer id="contact">
             <h2 class="contact">Contact:</h2>
                 <div class="col-sm-5">
                   <p><span class="glyphicon glyphicon-map-marker"></span> Bulevardi 31, 00100 Helsinki, Suomi</p>
@@ -50,7 +50,19 @@
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                        document.getElementById("testi").innerHTML = xmlhttp.responseText;
+                        
+                        var text = xmlhttp.responseText;
+                        var textString = JSON.parse(text);
+                        
+                        var stringAr = [];
+                        
+                        for (var i = 0; i < textString.length; i++ ){
+                            stringAr[i] = "Name: " + textString[i].name + " Address: "
+                            + textString[i].address + " Review: " +
+                            textString[i].review + " Stars: " + textString[i].stars;
+                        }
+                        document.getElementById("testi").innerHTML = stringAr;
+                        
                     }
                 };
                 xmlhttp.open("GET", "db.php", true);

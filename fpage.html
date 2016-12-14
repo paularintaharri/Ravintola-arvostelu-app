@@ -10,7 +10,7 @@
        
       
         <header>
-            <ul>
+            <ul id="navi">
               <li><a class="active" href="fpage.html">Home</a></li>
               <li><a href="rewievspage.html">Reviews</a></li>
               <li><a href="#contact">Contact</a></li>
@@ -28,6 +28,7 @@
     
          
         <h1>RESTAURANT REVIEW</h1>
+        
         <h2>Leave a review!</h2>
         
         <form  class="form-horizontal" id="reviewform" method="post">
@@ -62,102 +63,23 @@
                    <p><span class="glyphicon glyphicon-envelope"></span> johanna@metropolia.fi</p>
                 </div>
         </footer>
-    
- <!--   <div id="paikka"></div>
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <div id="googleMap" style="height:400px;width:50%;"></div>  -->
-    
-  <script src="https://www.google.fi/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=ravintolat+helsinki&rflfq=1&rlha=0&rllag=60166634,24939924,589&tbm=lcl&tbs=lf_msr:-1,lf:1,lf_ui:9,lf_pqs:EAE"></script>
-  <script>
-/*
-    // ******** KARTTA ******* 
-       function initialize() {
-        var map = new google.maps.Map(document.getElementById("googleMap"), {
-          center: {lat: 60.1699, lng: 24.9384},
-          zoom: 12,
-          mapTypeId: 'roadmap'
-        });
         
-        
-        var input = document.getElementById('pac-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
-        
-        
-         // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function() {
-          searchBox.setBounds(map.getBounds());
-        });
-        
-         var markers = [];
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-        searchBox.addListener('places_changed', function() {
-          var places = searchBox.getPlaces();
-
-          if (places.length == 0) {
-            return;
-          }
-
-          // Clear out the old markers.
-          markers.forEach(function(marker) {
-            marker.setMap(null);
-          });
-          
-          markers = [];
-          
-          var bounds = new google.maps.LatLngBounds();
-          places.forEach(function(place) {
-            if (!place.geometry) {
-              console.log("Returned place contains no geometry");
-              return;
-            }
-            var icon = {
-              url: place.icon,
-              size: new google.maps.Size(71, 71),
-              origin: new google.maps.Point(0, 0),
-              anchor: new google.maps.Point(17, 34),
-              scaledSize: new google.maps.Size(25, 25)
-            }; 
-
-            // Create a marker for each place.
-            markers.push(new google.maps.Marker({
-              map: map,
-              icon: icon,
-              title: place.name,
-              position: place.geometry.location
-            }));
-
-            if (place.geometry.viewport) {
-              // Only geocodes have viewport.
-              bounds.union(place.geometry.viewport);
-            } else {
-              bounds.extend(place.geometry.location);
-            }
-          });
-          map.fitBounds(bounds);
-        });
-        } */
-        </script>
-          <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initialize"
-          </script> 
-          
-        
-                <script>
+      <script>
         
         function ajaxFunction(){
-          var ajaxRequest;  // The variable that makes Ajax possible!
+          
+          var xmlhttp; 
         	
         	try{
         		// Opera 8.0+, Firefox, Safari
-        		ajaxRequest = new XMLHttpRequest();
+        		xmlhttp = new XMLHttpRequest();
         	} catch (e){
         		// Internet Explorer Browsers
         		try{
-        			ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        			xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
         		} catch (e) {
         			try{
-        				ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+        				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         			} catch (e){
         				// Something went wrong
         				alert("Your browser broke!");
@@ -166,8 +88,8 @@
         		}
         	}
         	
-        		// Create a function that will receive data sent from the server
-        	ajaxRequest.onreadystatechange = function(){
+        	
+        	xmlhttp.onreadystatechange = function(){
         		if(ajaxRequest.readyState == 4){
         		  document.getElementById('paikka').innerHTML = ajaxRequest.responseText;
         			
@@ -176,11 +98,11 @@
         	};
         
         
-        	ajaxRequest.open("GET", "db.php", true);
+        	ajaxRequest.open("POST", "db.php", true);
         	ajaxRequest.send(null); 
         }
         
-        window.onload = ajaxFunction();
+      
         </script>
         
          </div>

@@ -6,8 +6,8 @@
         <title>Testi</title>
     </head>
     <body>
- <header>
-            <ul>
+     <header>
+            <ul id="navi">
               <li><a href="fpage.html">Home</a></li>
               <li><a class="active" href="rewievspage.html">Reviews</a></li>
               <li><a href="#contact">Contact</a></li>
@@ -34,6 +34,10 @@
         </form>
         
         <div id="testi"></div>
+        <div id="koe"></div>
+        
+        
+        
         
         </br>
         <footer id="contact">
@@ -47,13 +51,61 @@
         
         </footer>
         </div>
+        
+        
         <script>
             function getRestaurants(){
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                        document.getElementById("testi").innerHTML = xmlhttp.responseText;
-                    }
+                        
+                        var text = xmlhttp.responseText;
+                        var textString = JSON.parse(text);
+                       
+                       
+                        var stringArName = [];
+                        var stringArAdd = [];
+                        var stringArStar = [];
+                        var stringArRev = [];
+                        
+                        for (var i = 0; i < textString.length; i++ ){
+                            stringArName[i] = "Name: " + textString[i].name;
+                            stringArAdd[i] = "Address: "+ textString[i].address;
+                            stringArStar[i] ="Stars: " + textString[i].stars;
+                            stringArRev[i] = "Review: " + textString[i].review;
+                            }   
+                        
+                        for (var j =0; j < stringArName.length; j++){
+                            
+                            var x = document.createElement("TABLE");
+                            x.setAttribute("id", j);
+                            document.getElementById("testi").appendChild(x);
+                            
+                            var y = document.createElement("TR");
+                            var y1 = document.createElement("TR");
+                            var y2 = document.createElement("TR");
+                            var y3 = document.createElement("TR");
+                            
+                            var t = document.createTextNode(stringArName[j]);
+                            var t1 = document.createTextNode(stringArAdd[j]);
+                            var t2 = document.createTextNode(stringArStar[j]);
+                            var t3 = document.createTextNode(stringArRev[j]);
+                            
+                            y.appendChild(t); 
+                            y1.appendChild(t1); 
+                            y2.appendChild(t2); 
+                            y3.appendChild(t3); 
+                            
+                            document.getElementById(j).appendChild(y);
+                            document.getElementById(j).appendChild(y1);
+                            document.getElementById(j).appendChild(y2);
+                            document.getElementById(j).appendChild(y3);
+                 
+                         }
+                                             
+                        }
+                    
+                       
                 };
                 xmlhttp.open("GET", "db.php", true);
                 xmlhttp.send();

@@ -17,34 +17,22 @@
         
         
         <div class="container">
-        
-
-       
         <h1>REVIEWS</h1>
         
         <h2>Read other users revievs</h2>
+        
         <form class="form-horizontal" id="reviews"  method = "GET">
             <div class="form-group">
             <div class="col-sm-10">
                 <input type="text" name="name" required placeholder="Write restaurant name" class="form-control">
                 </br>
-<<<<<<< HEAD
-                <button class="btn btn-danger" onclick="getRestaurants()">Submit</button>
-=======
+
                 <input type="submit" value="submit" class="btn btn-danger">
            
->>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
             </div>
             </div>
         </form>
-        
-<<<<<<< HEAD
-        <div id="testi"></div>
-        <div id="koe"></div>
-        
-=======
-       
-        <div class="container">
+
         <form class="form-horizontal" id="getAll" method="GET">
                <div class="form-group">
                 <div class="col-sm-10">
@@ -53,18 +41,10 @@
             </div>
             </div>
         </form>
-        </div>
+        <div id="testi"></div>
         
-         <div id="testi" class="container"></div>
-         
 
-         
-         
->>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
         
-        
-        
-        </br>
         <footer id="contact">
             <h2 class="contact">Contact:</h2>
                 <div class="col-sm-5">
@@ -83,25 +63,23 @@
         var theForm = document.getElementById('reviews');
         theForm.onsubmit = getRestaurants();
         
-        var searchAllForm = document.getElementById('getAll');
-        searchAllForm.onsubmit = getRestaurants();
+//        var searchAllForm = document.getElementById('getAll');
+//       searchAllForm.onsubmit = getRestaurants();
     
             function getRestaurants(){
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
+                    
+                   
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                        
                         
                         var text = xmlhttp.responseText;
                         var textString = JSON.parse(text);
-                       
-                       
                         var stringArName = [];
                         var stringArAdd = [];
                         var stringArStar = [];
                         var stringArRev = [];
-                        
-<<<<<<< HEAD
+
                         for (var i = 0; i < textString.length; i++ ){
                             stringArName[i] = "Name: " + textString[i].name;
                             stringArAdd[i] = "Address: "+ textString[i].address;
@@ -134,30 +112,17 @@
                             document.getElementById(j).appendChild(y1);
                             document.getElementById(j).appendChild(y2);
                             document.getElementById(j).appendChild(y3);
-                 
                          }
-                                             
-                        }
-                    
-                       
-=======
-                        for (var i = 0; i < textString.length; i++ ){ 
-                            
-                            stringAr[i] = "Name: " + textString[i].name + " Address: "
-                            + textString[i].address + " Review: " +
-                            textString[i].review + " Stars: " + textString[i].stars + "</br>"; 
-                          
-                       }
-                        
-                        document.getElementById("testi").innerHTML = stringAr;
-    
-                    
+              
                     }
->>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
+                    
+                    
                 };
                 xmlhttp.open("GET", "db.php", true);
                 xmlhttp.send();
+                
             }
+            
              
         </script> 
     </body>

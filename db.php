@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< HEAD
     $servername = 'localhost';
     $username = 'root';
     $password = '';
@@ -12,8 +11,6 @@
     $address = $_GET["address"];
     $stars = $_GET["stars"];
     $review = $_GET["review"];
-=======
->>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
 
  
     function getResource() {
@@ -37,11 +34,7 @@
     
     function showAll() { 
         
-<<<<<<< HEAD
         $link = new mysqli($servername, 'root', '', 'restaurant');
-=======
-        $link = new mysqli('localhost', 'johannrt', '', 'Projekti');
->>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
 
         // Check connection
         if ($link->connect_error) {
@@ -109,12 +102,7 @@
         
         
         
-<<<<<<< HEAD
         $link = new mysqli($servername, 'root', '', 'restaurant');
-=======
-        $link = new mysqli('localhost', 'johannrt', '', 'Projekti');
-       
->>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
 
         // Check connection
         if ($link->connect_error) {
@@ -169,15 +157,9 @@
             break;
         case 'GET' && $resource[0]=='all':
             showAll();
-<<<<<<< HEAD
-            break;
-        case 'POST':
-            add($parameters);
-=======
             break; 
         case 'GET' && $resource[0]=='name':
             showRestRev($resource[1]);
->>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
             break;
         default:
             //http_response_code(405); # Method not allowed

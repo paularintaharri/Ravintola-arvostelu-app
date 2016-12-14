@@ -60,7 +60,7 @@
             }
             echo json_encode($arr);
         } else {
-            //echo json_encode("No reviews yet!";
+              echo "No reviews yet!";
         
         }
         
@@ -125,19 +125,17 @@
                 $jsonObject = (array('name' => $row["name"], 'address' => $row["address"],
                 'review' => $row["review"], 'stars'=> $row["stars"]));
                 
-           
                 
                 $arr[$inc] = $jsonObject;
                 $inc++;
 
             }
         
-           
             echo json_encode($arr);
             
         } else {
-            return false;
-        
+            echo 'No reviews yet! Head to the main page to leave one';
+          
         }
         
         $link->close();

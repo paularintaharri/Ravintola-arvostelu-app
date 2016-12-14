@@ -1,19 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-    $servername = 'localhost';
-    $username = 'root';
-    $password = '';
-    $database = 'restaurant';
-    $table = 'restaurants';
-    
-    
-    $name = $_GET["name"];
-    $address = $_GET["address"];
-    $stars = $_GET["stars"];
-    $review = $_GET["review"];
-=======
->>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
 
  
     function getResource() {
@@ -36,12 +22,9 @@
 
     
     function showAll() { 
-        
-<<<<<<< HEAD
-        $link = new mysqli($servername, 'root', '', 'restaurant');
-=======
+    
         $link = new mysqli('localhost', 'johannrt', '', 'Projekti');
->>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
+
 
         // Check connection
         if ($link->connect_error) {
@@ -67,7 +50,7 @@
             }
             echo json_encode($arr);
         } else {
-            //echo json_encode("No reviews yet!";
+              echo "No reviews yet!";
         
         }
         
@@ -77,7 +60,7 @@
     
     function add($n, $add, $r, $s) {
         
-        $link = new mysqli('localhost', 'root', '', 'restaurant');
+        $link = new mysqli('localhost', 'johannrt', '', 'Projekti');
 
         // Check connection
         if ($link->connect_error) {
@@ -107,14 +90,7 @@
         
         $restaurant = strip_tags($res);
         
-        
-        
-<<<<<<< HEAD
-        $link = new mysqli($servername, 'root', '', 'restaurant');
-=======
         $link = new mysqli('localhost', 'johannrt', '', 'Projekti');
-       
->>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
 
         // Check connection
         if ($link->connect_error) {
@@ -137,19 +113,17 @@
                 $jsonObject = (array('name' => $row["name"], 'address' => $row["address"],
                 'review' => $row["review"], 'stars'=> $row["stars"]));
                 
-           
                 
                 $arr[$inc] = $jsonObject;
                 $inc++;
 
             }
         
-           
             echo json_encode($arr);
             
         } else {
-            return false;
-        
+            echo 'No reviews yet! Head to the main page to leave one';
+          
         }
         
         $link->close();
@@ -169,15 +143,9 @@
             break;
         case 'GET' && $resource[0]=='all':
             showAll();
-<<<<<<< HEAD
-            break;
-        case 'POST':
-            add($parameters);
-=======
             break; 
         case 'GET' && $resource[0]=='name':
             showRestRev($resource[1]);
->>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
             break;
         default:
             //http_response_code(405); # Method not allowed

@@ -18,8 +18,6 @@
         
         <div class="container">
         
-
-       
         <h1>REVIEWS</h1>
         
         <h2>Read other users revievs</h2>
@@ -27,24 +25,17 @@
             <div class="form-group">
             <div class="col-sm-10">
                 <input type="text" name="name" required placeholder="Write restaurant name" class="form-control">
-                </br>
-<<<<<<< HEAD
-                <button class="btn btn-danger" onclick="getRestaurants()">Submit</button>
-=======
-                <input type="submit" value="submit" class="btn btn-danger">
-           
->>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
+                <br>
+
+                <input type="submit" value="Submit" class="btn btn-danger">
+
             </div>
             </div>
         </form>
+
+
         
-<<<<<<< HEAD
-        <div id="testi"></div>
-        <div id="koe"></div>
-        
-=======
        
-        <div class="container">
         <form class="form-horizontal" id="getAll" method="GET">
                <div class="form-group">
                 <div class="col-sm-10">
@@ -53,18 +44,11 @@
             </div>
             </div>
         </form>
-        </div>
+      
         
-         <div id="testi" class="container"></div>
-         
+        <div id="testi"></div>
 
-         
-         
->>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
-        
-        
-        
-        </br>
+        <br>
         <footer id="contact">
             <h2 class="contact">Contact:</h2>
                 <div class="col-sm-5">
@@ -72,7 +56,7 @@
                   <p><span class="glyphicon glyphicon-phone"></span> 050 123 4567</p>
                   <p><span class="glyphicon glyphicon-envelope"></span> paula@metropolia.fi</p>
                   <p><span class="glyphicon glyphicon-envelope"></span> johanna@metropolia.fi</p>
-                </div>
+        </div>
         
         </footer>
         </div>
@@ -80,84 +64,82 @@
         
         <script>
         
+        
+        
         var theForm = document.getElementById('reviews');
         theForm.onsubmit = getRestaurants();
         
-        var searchAllForm = document.getElementById('getAll');
-        searchAllForm.onsubmit = getRestaurants();
+    /*    var searchAllForm = document.getElementById('getAll');
+        searchAllForm.onsubmit = getRestaurants(); */
+
+       
     
             function getRestaurants(){
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function() {
-                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                        
-                        
-                        var text = xmlhttp.responseText;
-                        var textString = JSON.parse(text);
+  
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function() {
                        
-                       
-                        var stringArName = [];
-                        var stringArAdd = [];
-                        var stringArStar = [];
-                        var stringArRev = [];
-                        
-<<<<<<< HEAD
-                        for (var i = 0; i < textString.length; i++ ){
-                            stringArName[i] = "Name: " + textString[i].name;
-                            stringArAdd[i] = "Address: "+ textString[i].address;
-                            stringArStar[i] ="Stars: " + textString[i].stars;
-                            stringArRev[i] = "Review: " + textString[i].review;
+                        if (this.readyState == 4 && this.status == 200) {
+                            
+                            var text = xmlhttp.responseText;
+                            
+                            if (typeof(text)==='string' && text.charAt(0)==='N'){
+                                document.getElementById('testi').innerHTML = text;
+                            } else {
+                            
+                            var textString = JSON.parse(text);
+                               
+                               
+                            var stringArName = [];
+                            var stringArAdd = [];
+                            var stringArStar = [];
+                            var stringArRev = [];
+        
+                            for (var i = 0; i < textString.length; i++ ){
+                                stringArName[i] = "Name: " + textString[i].name;
+                                stringArAdd[i] = "Address: "+ textString[i].address;
+                                stringArStar[i] ="Stars: " + textString[i].stars;
+                                stringArRev[i] = "Review: " + textString[i].review;
                             }   
-                        
-                        for (var j =0; j < stringArName.length; j++){
-                            
-                            var x = document.createElement("TABLE");
-                            x.setAttribute("id", j);
-                            document.getElementById("testi").appendChild(x);
-                            
-                            var y = document.createElement("TR");
-                            var y1 = document.createElement("TR");
-                            var y2 = document.createElement("TR");
-                            var y3 = document.createElement("TR");
-                            
-                            var t = document.createTextNode(stringArName[j]);
-                            var t1 = document.createTextNode(stringArAdd[j]);
-                            var t2 = document.createTextNode(stringArStar[j]);
-                            var t3 = document.createTextNode(stringArRev[j]);
-                            
-                            y.appendChild(t); 
-                            y1.appendChild(t1); 
-                            y2.appendChild(t2); 
-                            y3.appendChild(t3); 
-                            
-                            document.getElementById(j).appendChild(y);
-                            document.getElementById(j).appendChild(y1);
-                            document.getElementById(j).appendChild(y2);
-                            document.getElementById(j).appendChild(y3);
-                 
-                         }
-                                             
+                                
+                            for (var j =0; j < stringArName.length; j++){
+                                
+                                var x = document.createElement("TABLE");
+                                x.setAttribute("id", j);
+                                document.getElementById("testi").appendChild(x);
+                                
+                                var y = document.createElement("TR");
+                                var y1 = document.createElement("TR");
+                                var y2 = document.createElement("TR");
+                                var y3 = document.createElement("TR");
+                                
+                                var t = document.createTextNode(stringArName[j]);
+                                var t1 = document.createTextNode(stringArAdd[j]);
+                                var t2 = document.createTextNode(stringArStar[j]);
+                                var t3 = document.createTextNode(stringArRev[j]);
+                                
+                                y.appendChild(t); 
+                                y1.appendChild(t1); 
+                                y2.appendChild(t2); 
+                                y3.appendChild(t3); 
+                                
+                                document.getElementById(j).appendChild(y);
+                                document.getElementById(j).appendChild(y1);
+                                document.getElementById(j).appendChild(y2);
+                                document.getElementById(j).appendChild(y3);
+             
+                             
                         }
-                    
-                       
-=======
-                        for (var i = 0; i < textString.length; i++ ){ 
-                            
-                            stringAr[i] = "Name: " + textString[i].name + " Address: "
-                            + textString[i].address + " Review: " +
-                            textString[i].review + " Stars: " + textString[i].stars + "</br>"; 
-                          
-                       }
                         
-                        document.getElementById("testi").innerHTML = stringAr;
-    
-                    
-                    }
->>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
-                };
+                      
+                        }  
+                        }
+                    };
+                
                 xmlhttp.open("GET", "db.php", true);
                 xmlhttp.send();
             }
+            
              
         </script> 
     </body>

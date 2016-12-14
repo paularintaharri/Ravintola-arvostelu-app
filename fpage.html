@@ -31,12 +31,23 @@
         
         <h2>Leave a review!</h2>
         
-        <form  class="form-horizontal" id="reviewform" method="post">
+        <form  class="form-horizontal" id="reviewform" method="GET">
           <div class="form-group">
             <div class="col-sm-10">
+<<<<<<< HEAD
               <input name="name" type="text" class="form-control" placeholder="Restaurant name" required>
               <input name="address" type="text" class="form-control" placeholder="Address" required>
+=======
+              
+              <input type="text" name='name' class="form-control" placeholder="Restaurant name"
+              pattern='[a-zA-Z0-9-]' required>
+              
+              <input type="text" name='address' class="form-control" placeholder="Address"
+              pattern='[a-zA-Z0-9-]'required>
+              
+>>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
               <select name="stars" class="form-control">
+                
                 <option value = "" disable selected>Stars </option>
                 <option value = "1">1</option>
                 <option value = "2">2</option>
@@ -44,15 +55,20 @@
                 <option value = "4">4</option>
                 <option value = "5">5</option>
               </select>
-              <textarea name="review" rows="4" cols="50" n class="form-control" form="reviewform" placeholder="Write your review here" required></textarea>
+              <textarea name="review" rows="4" cols="50" n class="form-control"
+              form="reviewform" placeholder="Write your review here"
+              pattern='[a-zA-Z0-9-]' required></textarea>
               
               </br>
               
-              <input type="Submit" id="sub1" value ="Submit" class="btn btn-danger">
+              <input type="submit" value ="Submit" class="btn btn-danger">
             </div>
             </div>
         </form>
         
+        <div class="col-sm-10">
+        <div id='resp'></div>
+        </div>
         
         <footer id="contact">
             <h2 class="contact" >Contact:</h2>
@@ -65,41 +81,25 @@
         </footer>
         
       <script>
+      
+          var form = document.getElementById('reviewform');
+          form.onsubmit = submit();
         
-        function ajaxFunction(){
+        function submit(){
           
-          var xmlhttp; 
-        	
-        	try{
-        		// Opera 8.0+, Firefox, Safari
-        		xmlhttp = new XMLHttpRequest();
-        	} catch (e){
-        		// Internet Explorer Browsers
-        		try{
-        			xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-        		} catch (e) {
-        			try{
-        				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        			} catch (e){
-        				// Something went wrong
-        				alert("Your browser broke!");
-        				return false;
-        			}
-        		}
-        	}
-        	
-        	
-        	xmlhttp.onreadystatechange = function(){
-        		if(ajaxRequest.readyState == 4){
-        		  document.getElementById('paikka').innerHTML = ajaxRequest.responseText;
-        			
-        		}
-        		
-        	};
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+              
+              document.getElementById('resp').innerHTML = xmlhttp.responseText;
+              
+          
+            }
+          };
+          
         
-        
-        	ajaxRequest.open("POST", "db.php", true);
-        	ajaxRequest.send(null); 
+          xmlhttp.open("GET", "db.php", true);
+          xmlhttp.send();
         }
         
       

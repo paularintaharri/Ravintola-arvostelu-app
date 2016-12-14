@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
     $servername = 'localhost';
     $username = 'root';
     $password = '';
@@ -11,49 +12,36 @@
     $address = $_GET["address"];
     $stars = $_GET["stars"];
     $review = $_GET["review"];
+=======
+>>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
 
  
     function getResource() {
         
         # returns numerically indexed array of URI parts
-        $resource_string = $_SERVER['REQUEST_URI'];
+        $resource_string = $_SERVER['HTTP_REFERER']; //OIKEA
+
         
         if (strstr($resource_string, '?')) {
-            $resource_string = substr($resource_string, 0, strpos($resource_string, '?'));
+            $resource_string  = substr($resource_string, strpos($resource_string, '?') + 1, strlen($resource_string)-strpos($resource_string, '?'));
         }
         
-        $resource = array();
-        $resource = explode('/', $resource_string);
-        array_shift($resource);   
+        $replace = str_replace('&', '=', $resource_string);
+        
+        $x = str_replace('+', ' ', $replace);
+        $resource = explode('=', $x);
+ 
         return $resource;
     }
-
-    function getParameters() {
-        
-        # returns an associative array containing the parameters
-        $resource = $_SERVER['REQUEST_URI'];
-        $param_string = "";
-        $param_array = array();
-        
-        if (strstr($resource, '?')) {
-            
-            # URI has parameters
-            $param_string = substr($resource, strpos($resource, '?')+1);
-            $parameters = explode('&', $param_string);                      
-            foreach ($parameters as $single_parameter) {
-                $param_name = substr($single_parameter, 0, strpos($single_parameter, '='));
-                $param_value = substr($single_parameter, strpos($single_parameter, '=')+1);
-                $param_array[$param_name] = $param_value;
-            }
-        }
-        return $param_array;
-    }
-
 
     
     function showAll() { 
         
+<<<<<<< HEAD
         $link = new mysqli($servername, 'root', '', 'restaurant');
+=======
+        $link = new mysqli('localhost', 'johannrt', '', 'Projekti');
+>>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
 
         // Check connection
         if ($link->connect_error) {
@@ -79,7 +67,7 @@
             }
             echo json_encode($arr);
         } else {
-            echo "No reviews yet!";
+            //echo json_encode("No reviews yet!";
         
         }
         
@@ -96,40 +84,51 @@
             die("Connection failed: " . $link->connect_error);
         }
         
-        $name = $n;
-        $address = $add;
-        $review = $r;
-        $stars = $s;
+        $name = strip_tags($n);
+        $address = strip_tags($add);
+        $review = strip_tags($r);
+        $stars = strip_tags($s);
         
         $sql = "INSERT INTO `restaurants`(`name`, `address`, `review`, `stars`)
         VALUES ('$name', '$address', '$review', $stars)";
         
         if(!mysqli_query($link, $sql)){
             die('Error : ' . $link->error);
+            echo ('Something went wrong :(');
         }
         
-        echo ('New review added!');
+        echo ('New review added! Thank you for your input.');
         
-         $link->close();
+        $link->close();
 
     }
     
     function showRestRev($res){
         
-        $restaurant = $res;
+        $restaurant = strip_tags($res);
         
+        
+        
+<<<<<<< HEAD
         $link = new mysqli($servername, 'root', '', 'restaurant');
+=======
+        $link = new mysqli('localhost', 'johannrt', '', 'Projekti');
+       
+>>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
 
         // Check connection
         if ($link->connect_error) {
             die("Connection failed: " . $link->connect_error);
         }
         
-        $sql = "SELECT * FROM restaurants WHERE name= '$restaurant'";
-        $result = mysqli_query($link, $sql);
-    
+       $sql = "SELECT * FROM restaurants WHERE name= '$restaurant'";
+        
+       $result = mysqli_query($link, $sql);
+        
+        
         $rows = [];
         $inc = 0;
+        
         
         if ($result->num_rows > 0) {
         // output data of each row
@@ -138,13 +137,18 @@
                 $jsonObject = (array('name' => $row["name"], 'address' => $row["address"],
                 'review' => $row["review"], 'stars'=> $row["stars"]));
                 
+           
+                
                 $arr[$inc] = $jsonObject;
                 $inc++;
 
             }
+        
+           
             echo json_encode($arr);
+            
         } else {
-            echo "No reviews yet!";
+            return false;
         
         }
         
@@ -153,24 +157,31 @@
     }
     
 
-	$resource = getResource();
-    $parameters = getParameters();
+
+    $resource = getResource();
+
     $method = $_SERVER['REQUEST_METHOD'];
+    
 
     switch ($method) {
-        case 'GET' && $resource[1]=='name':
-            showRestRev($resource[1]);
+        case 'GET' && $resource[0]=='name' && $resource[2]=='address':
+            add($resource[1],$resource[3],$resource[7],$resource[5]);
             break;
-        case 'GET':
+        case 'GET' && $resource[0]=='all':
             showAll();
+<<<<<<< HEAD
             break;
         case 'POST':
             add($parameters);
+=======
+            break; 
+        case 'GET' && $resource[0]=='name':
+            showRestRev($resource[1]);
+>>>>>>> 6b81c51763b70daba4094bb4c6c24c5c945eb161
             break;
         default:
-            http_response_code(405); # Method not allowed
+            //http_response_code(405); # Method not allowed
             break;
-    }
+    } 
 
-    
 ?>    

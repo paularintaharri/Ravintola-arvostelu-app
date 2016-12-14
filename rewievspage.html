@@ -33,7 +33,18 @@
         </form>
         </div>
         
-        <div id="testi"></div>
+       
+        
+        <form class="form-horizontal" id="getAll" method="GET">
+               <div class="form-group">
+                <div class="col-sm-10">
+                <input type="submit" name="all" value="Want to see all reviews? CLikck meee" class="btn btn-danger">
+           
+            </div>
+            </div>
+        </form>
+        
+         <div id="testi"></div>
         
         <footer id="contact">
             <h2 class="contact">Contact:</h2>
@@ -50,6 +61,9 @@
         
         var theForm = document.getElementById('reviews');
         theForm.onsubmit = getRestaurants();
+        
+        var searchAllForm = document.getElementById('getAll');
+        searchAllForm.onsubmit = getRestaurants();
     
             function getRestaurants(){
                 var xmlhttp = new XMLHttpRequest();

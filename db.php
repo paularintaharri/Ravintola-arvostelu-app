@@ -23,28 +23,34 @@
         # returns numerically indexed array of URI parts
         $resource_string = $_SERVER['HTTP_REFERER']; //OIKEA
         //$resource_string = $_SERVER['REQUEST_URI'];
-       //$resource_string = 'https://testi-johannrt.c9users.io/Ravintola/rewievspage.html?name=momo';
+    //   $resource_string = 'https://testi-johannrt.c9users.io/Ravintola/rewievspage.html?name=momo&address=yea&stars=4&review=olijeba';
         
         if (strstr($resource_string, '?')) {
             $resource_string  = substr($resource_string, strpos($resource_string, '?') + 1, strlen($resource_string)-strpos($resource_string, '?'));
         }
         //echo $resource_string;
        // $resource = array();
-       
-       $x = str_replace('+', ' ', $resource_string);
+        
+        $replace = str_replace('&', '=', $resource_string);
+        
+        $x = str_replace('+', ' ', $replace);
         $resource = explode('=', $x);
+ 
+        
         
         
         //array_shift($resource); 
-        //echo $resource[1];
+      //  echo $resource[1] . $resource[2]. $resource[3] .$resource[4];
         return $resource;
     }
 
-    function getParameters() {
+  /*  function getParameters() {
         
         # returns an associative array containing the parameters
-        $resource = $_SERVER['REQUEST_URI'];
+        $resource = $_SERVER['HTTP_REFERER'];
+        //$resource = $_SERVER['REQUEST_URI'];
         $param_string = "";
+        
         $param_array = array();
         
         if (strstr($resource, '?')) {
@@ -59,7 +65,7 @@
             }
         }
         return $param_array;
-    }
+    } */
 
 
     
@@ -170,28 +176,26 @@
     }
     
 
-    
-    //$name = $_GET["name"];
-	$resource = getResource();
-    //$parameters = getParameters();
-    $method = $_SERVER['REQUEST_METHOD'];
 
-  
-    //showRestRev($resource[1]);
+    $resource = getResource();
+
+    $method = $_SERVER['REQUEST_METHOD'];
+    
+
     switch ($method) {
+        case 'GET' && $resource[0]=='name' && $resource[2]=='address':
+            add($resource[1],$resource[3],$resource[7],$resource[5]);
+            break;
+        case 'GET' && $resource[0]=='all':
+            showAll();
+            break; 
         case 'GET' && $resource[0]=='name':
             showRestRev($resource[1]);
             break;
-        case 'GET' && $resource[1]=='':
-            showAll();
-            break;
-        case 'POST':
-            add($parameters);
-            break;
         default:
-            http_response_code(405); # Method not allowed
+            //http_response_code(405); # Method not allowed
             break;
     } 
-
+    
     //showRestRev('momo'); 
 ?>    
